@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public HighScore highScore;
     public Text highScoreValue;
+    public Text Last10;
     public GameObject highScoreMenu;
    public void StartGame() 
    {
@@ -20,8 +21,10 @@ public class MainMenu : MonoBehaviour
    }
    public void ShowHighScore()
    {
-       highScoreMenu.SetActive(true);
+      highScoreMenu.SetActive(true);
        highScoreValue.text = highScore.highscore.ToString();
+       Last10.text = highScore.last10scores.ToString();
+       Debug.Log(highScore.last10scores);
    }
     public void CloseHighScore()
    {

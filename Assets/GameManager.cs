@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
            turnCounter++;
            ResetPins();
 
-           if(turnCounter == 10)
+           if(turnCounter == 1)
            {
                menu.SetActive(true);
            }
@@ -79,6 +79,8 @@ public class GameManager : MonoBehaviour
         obj.SetString("past",history+" "+score);
         highScore.highscore =obj.maximum();
 
+        highScore.last10scores=obj.GetString("past");
+
         // obj.SetString("past","");
 
 
@@ -104,18 +106,19 @@ public class GameManager : MonoBehaviour
 
 class HelloWorld {
   public int maximum() {
-    
+
     
     String history=GetString("past");
     var arr=history.Split(new []{" "}, StringSplitOptions.None);
     // Debug.Log("Length of array ")
-    if(arr.Length>=5){
+    if(arr.Length>=10){
     var arr2=history.Split(new []{" "},2, StringSplitOptions.None);
     history=arr2[1];
     }
     
    //  Debug.Log(history);
     
+    SetString("past",history);
     int max=0;
     arr=history.Split(new []{" "}, StringSplitOptions.None);
     for(int i=0;i<arr.Length;i++)

@@ -6,7 +6,7 @@ using UnityEngine;
 public class HighScore : ScriptableObject
 {
    public int highscore;
-  
+   public string last10scores;
 }
 
 
