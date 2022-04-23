@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     Vector3[] positions;
     public HighScore highScore;
     public GameObject menu;
+    HelloWorld obj=new HelloWorld();
     // Start is called before the first frame update
     void Start()
     {
@@ -65,10 +67,20 @@ public class GameManager : MonoBehaviour
         }
         ScoreUI.text = score.ToString();
 
-        if(score > highScore.highscore)
-        {
-            highScore.highscore = score;
-        }
+        // if(score > highScore.highscore)
+        // {
+        //     highScore.highscore = score;
+        // }
+
+        String history=obj.GetString("past");
+        if(history.Length==0)
+        obj.SetString("past",score+"");
+        else
+        obj.SetString("past",history+" "+score);
+        highScore.highscore =obj.maximum();
+
+        // obj.SetString("past","");
+
 
         Debug.Log(highScore.highscore);
     
@@ -89,3 +101,41 @@ public class GameManager : MonoBehaviour
         ball.transform.rotation = Quaternion.identity;
     }
 }
+
+class HelloWorld {
+  public int maximum() {
+    
+    
+    String history=GetString("past");
+    var arr=history.Split(new []{" "}, StringSplitOptions.None);
+    // Debug.Log("Length of array ")
+    if(arr.Length>=5){
+    var arr2=history.Split(new []{" "},2, StringSplitOptions.None);
+    history=arr2[1];
+    }
+    
+   //  Debug.Log(history);
+    
+    int max=0;
+    arr=history.Split(new []{" "}, StringSplitOptions.None);
+    for(int i=0;i<arr.Length;i++)
+    {
+        if(Int16.Parse(arr[i])>max)
+        max=Int16.Parse(arr[i]);
+    }
+    
+   //  Debug.Log(max);
+   return max;
+  }
+  
+  public void SetString(string KeyName, string Value)
+    {
+        PlayerPrefs.SetString(KeyName, Value);
+    }
+
+    public string GetString(string KeyName)
+    {
+        return PlayerPrefs.GetString(KeyName);
+    }
+}
+
