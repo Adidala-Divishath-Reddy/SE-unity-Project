@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
            turnCounter++;
            ResetPins();
 
-           if(turnCounter == 1)
+           if(turnCounter == 10)
            {
                menu.SetActive(true);
            }

@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.maxAngularVelocity = 140;
+        rb.maxAngularVelocity = 200;
     }
 
     // Update is called once per frame
