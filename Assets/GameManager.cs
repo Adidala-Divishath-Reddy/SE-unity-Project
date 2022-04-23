@@ -30,13 +30,13 @@ public class GameManager : MonoBehaviour
     void Update()
     {
        MoveBall();
-       if(Input.GetKeyDown(KeyCode.Space) || ball.transform.position.y < -20)
+       if(ball.transform.position.y < -20)
        {
            CountPinDown();
            turnCounter++;
            ResetPins();
 
-           if(turnCounter == 10)
+           if(turnCounter == 1)
            {
                menu.SetActive(true);
            }

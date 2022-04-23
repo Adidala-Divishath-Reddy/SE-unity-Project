@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
+   
     public Rigidbody rb;
     [SerializeField]
     float power;
@@ -11,16 +12,19 @@ public class Ball : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.maxAngularVelocity = 140;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
-        {
-        rb.AddForce(Vector3.forward * 5000);
+        //
+        //if(ball.transform.position.z > 0.4)
+        //{
+        
+        //rb.AddForce(Vector3.forward * 5000);
         AudioSource source = GetComponent<AudioSource>();
         source.Play();
-        }
+        //}
     }
 }
